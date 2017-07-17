@@ -22,8 +22,11 @@ public class HiLoGame {
 	// the random number generator
 	private Random rng;
 
-	// public boolean indicating if it's been guessed correctly
+	// boolean indicating if it's been guessed correctly
 	private boolean guessedCorrectly;
+	
+	// number of guesses made
+	private int guessCount;
 
 	// constructor creates the RNG instance
 	public HiLoGame() {
@@ -36,6 +39,9 @@ public class HiLoGame {
 	// 0 is returned if the guess was correct
 	public int makeGuess(int guess) {
 
+		//increment the guess counter
+		guessCount++;
+		
 		// if the user got the right number
 		if (guess == secretNumber) {
 			// set the guessed correctly flag to true and return 0
@@ -56,14 +62,22 @@ public class HiLoGame {
 	public boolean getGuessedCorrectly() {
 		return guessedCorrectly;
 	}
+	
+	//public getter for the number of guesses made
+	public int getGuessCount() {
+		return guessCount;
+	}
 
 	// method to reset the game state
 	public void newGame() {
 
 		// reset the guessed correctly flag
 		guessedCorrectly = false;
+		
+		//set the number of guesses back to 0
+		guessCount = 0;
 
-		// choose a new secret number from 1-99
-		secretNumber = rng.nextInt(98) + 1;
+		// choose a new secret number from 1-100
+		secretNumber = rng.nextInt(99) + 1;
 	}
 }
